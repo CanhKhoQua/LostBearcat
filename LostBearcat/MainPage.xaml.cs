@@ -1,25 +1,70 @@
-﻿namespace LostBearcat
+﻿using System;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui.Storage;
+
+namespace LostBearcat
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
-
         public MainPage()
         {
             InitializeComponent();
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        private async void OnAddImageClicked(object sender, EventArgs e)
         {
-            count++;
+            try
+            {
+                var result = await MediaPicker.PickPhotoAsync(new MediaPickerOptions
+                {
+                    Title = "Select Item Image"
+                });
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
+                if (result != null)
+                {
+                    var stream = await result.OpenReadAsync();
+                    SelectedImage.Source = ImageSource.FromStream(() => stream);
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
+            }
+        }
 
-            SemanticScreenReader.Announce(CounterBtn.Text);
+        private async void OnSubmitClicked(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(ItemNameEntry.Text))
+            {
+                await DisplayAlert("Validation Error", "Please enter an item name", "OK");
+                return;
+            }
+
+            if (CategoryPicker.SelectedIndex == -1)
+            {
+                await DisplayAlert("Validation Error", "Please select a category", "OK");
+                return;
+            }
+
+            await DisplayAlert("Success",
+                $"Item '{ItemNameEntry.Text}' added successfully!",
+                "OK");
+
+            ResetForm();
+        }
+
+        private void OnCancelClicked(object sender, EventArgs e)
+        {
+            ResetForm();
+        }
+
+        private void ResetForm()
+        {
+            ItemNameEntry.Text = string.Empty;
+            DescriptionEntry.Text = string.Empty;
+            LocationFoundEntry.Text = string.Empty;
+            CategoryPicker.SelectedIndex = -1;
+            SelectedImage.Source = null;
         }
     }
-
 }
