@@ -1,6 +1,6 @@
-﻿using System;
-using Microsoft.Maui.Controls;
+﻿using Microsoft.Maui.Controls;
 using Microsoft.Maui.Storage;
+using System;
 
 namespace LostBearcat
 {
@@ -34,6 +34,7 @@ namespace LostBearcat
 
         private async void OnSubmitClicked(object sender, EventArgs e)
         {
+            // Validate inputs
             if (string.IsNullOrWhiteSpace(ItemNameEntry.Text))
             {
                 await DisplayAlert("Validation Error", "Please enter an item name", "OK");
@@ -46,10 +47,13 @@ namespace LostBearcat
                 return;
             }
 
+            // Save item logic would go here
+            // For now, just show a success message
             await DisplayAlert("Success",
                 $"Item '{ItemNameEntry.Text}' added successfully!",
                 "OK");
 
+            // Reset form
             ResetForm();
         }
 

@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LostBearcat.MainNavigationPage"
+             BackgroundColor="{StaticResource Secondary}">
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="30">
+            <!-- Logo -->
+            <Image Source="bearcatlogo.png"
+                   HeightRequest="200"
+                   WidthRequest="200"
+                   Aspect="AspectFit"
+                   HorizontalOptions="Center"/>
+            <!-- Page Title -->
+            <Label Text="LostBearcat"
+        FontSize="32"
+        FontAttributes="Bold"
+        HorizontalOptions="Center"
+        TextColor="{StaticResource Tertiary}"/>
+            
+            <!-- Navigation Buttons -->
+            <VerticalStackLayout Spacing="15">
+                <Button x:Name="AddNewItemButton"
+                        Text="Add New Item"
+                        Clicked="OnAddNewItemClicked"
+                        BackgroundColor="{StaticResource Primary}"
+                        TextColor="{StaticResource White}"
+                        CornerRadius="10"
+                        FontSize="18"
+                        HeightRequest="60"/>
+
+                <Button x:Name="ViewLostItemsButton"
+                        Text="View Lost Items"
+                        Clicked="OnViewLostItemsClicked"
+                        BackgroundColor="{StaticResource Primary}"
+                        TextColor="{StaticResource White}"
+                        CornerRadius="10"
+                        FontSize="18"
+                        HeightRequest="60"/>
+
+                <Button x:Name="ItemInformationButton"
+                        Text="Item Information"
+                        Clicked="OnItemInformationClicked"
+                        BackgroundColor="{StaticResource Primary}"
+                        TextColor="{StaticResource White}"
+                        CornerRadius="10"
+                        FontSize="18"
+                        HeightRequest="60"/>
+
+              
+                <Button x:Name="FilterItemsButton"
+                        Text="Filter Items"
+                        Clicked="OnFilterItemsClicked"
+                        BackgroundColor="{StaticResource Primary}"
+                        TextColor="{StaticResource White}"
+                        CornerRadius="10"
+                        FontSize="18"
+                        HeightRequest="60"/>
+                
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

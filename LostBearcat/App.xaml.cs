@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Microsoft.Maui.Controls;
 
 namespace LostBearcat
 {
@@ -8,7 +8,8 @@ namespace LostBearcat
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            // Set the main page directly
+            MainPage = new NavigationPage(new MainNavigationPage());
         }
     }
 }
