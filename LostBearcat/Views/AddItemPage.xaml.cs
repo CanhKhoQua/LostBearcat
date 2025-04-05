@@ -4,9 +4,9 @@ using System;
 
 namespace LostBearcat
 {
-    public partial class MainPage : ContentPage
+    public partial class AddItemPage : ContentPage
     {
-        public MainPage()
+        public AddItemPage()
         {
             InitializeComponent();
         }

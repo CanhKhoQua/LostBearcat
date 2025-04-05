@@ -60,15 +60,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <AndroidResource Remove="NewFolder\**" />
-	  <Compile Remove="NewFolder\**" />
-	  <EmbeddedResource Remove="NewFolder\**" />
-	  <MauiCss Remove="NewFolder\**" />
-	  <MauiXaml Remove="NewFolder\**" />
-	  <None Remove="NewFolder\**" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <Compile Remove="AppShell - Copy.xaml.cs" />
 	</ItemGroup>
 
@@ -82,8 +73,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="MainPage.xaml.cs">
-	    <DependentUpon>MainPage.xaml</DependentUpon>
+	  <Compile Update="Views\AddItemPage.xaml.cs">
+	    <DependentUpon>AddItemPage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="MainNavigationPage.xaml.cs">
 	    <DependentUpon>MainNavigationPage.xaml</DependentUpon>
