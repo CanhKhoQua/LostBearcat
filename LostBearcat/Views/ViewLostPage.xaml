@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LostBearcat.Views.ViewLostPage"
+             Title="View Lost Item">
+    <ScrollView>
+        <VerticalStackLayout Spacing="25" Padding="30">
+        <CollectionView x:Name="cvItems"
+                        SelectionMode="Single"
+                        SelectionChanged="cvItemTapped">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" Span="2"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.Header>
+                <StackLayout>
+                    <Label Text="View Lost Items" FontSize="24" 
+                    HorizontalOptions="Center" 
+                    FontAttributes="Bold" Padding="20"/>
+                    <SearchBar Placeholder="Search items"/>
+                </StackLayout>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                        <Frame BorderColor="LightGray" CornerRadius="10" HorizontalOptions="Fill" Padding="10" Margin="10" WidthRequest="250" HeightRequest="220">
+                            <VerticalStackLayout Padding="15" Spacing="25">
+                                <VerticalStackLayout Spacing="10">
+                                    <Image Source="{Binding ImagePath}" HeightRequest="100" WidthRequest="100" HorizontalOptions="Center"/>
+                                    <Label Text="{Binding ItemName}" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center"/>
+                                    <Label Text="{Binding LocationFound}" FontSize="12" HorizontalOptions="Center"/>
+                                </VerticalStackLayout>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

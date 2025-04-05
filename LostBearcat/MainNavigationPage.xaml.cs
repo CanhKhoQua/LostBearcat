@@ -1,4 +1,5 @@
-﻿using Microsoft.Maui.Controls;
+﻿using LostBearcat.Views;
+using Microsoft.Maui.Controls;
 using System;
 
 namespace LostBearcat
@@ -17,7 +18,8 @@ namespace LostBearcat
 
         private async void OnViewLostItemsClicked(object sender, EventArgs e)
         {
-            // Add navigation logic for viewing lost items
+            var lostItemList = new ViewLostPage();
+            await Navigation.PushAsync(lostItemList);
         }
 
         private async void OnItemInformationClicked(object sender, EventArgs e)

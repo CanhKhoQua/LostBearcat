@@ -68,6 +68,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.50" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.3" />
 	</ItemGroup>
@@ -79,10 +80,22 @@
 	  <Compile Update="MainNavigationPage.xaml.cs">
 	    <DependentUpon>MainNavigationPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\LostDetailPage.xaml.cs">
+	    <DependentUpon>LostDetailPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\ViewLostPage.xaml.cs">
+	    <DependentUpon>ViewLostPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
 	  <MauiXaml Update="MainNavigationPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\LostDetailPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ViewLostPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
