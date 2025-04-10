@@ -16,8 +16,19 @@
                     <Label Text="View Lost Items" FontSize="24" 
                     HorizontalOptions="Center" 
                     FontAttributes="Bold" Padding="20"/>
-                    <SearchBar Placeholder="Search items"/>
-                </StackLayout>
+                    <!-- Preliminary Search Bar attempt 
+                    SearchButtonPressed="OnSearchButtonPressed"
+                    -->
+                        <SearchBar x:Name="searchBar"
+                                   Placeholder="Search items" 
+                                   TextChanged="OnSearchTextChanged"
+                                   
+                                   CancelButtonColor="Gray"
+                                   PlaceholderColor="Gray"
+                                   Margin="0,0,0,10"/>
+
+
+                    </StackLayout>
             </CollectionView.Header>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
@@ -32,7 +43,16 @@
                         </Frame>
                     </DataTemplate>
             </CollectionView.ItemTemplate>
-        </CollectionView>
+            
+            
+                <CollectionView.EmptyView>
+                    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                        <Label Text="No items match your search" FontSize="18" TextColor="Gray"/>
+                    </StackLayout>
+                </CollectionView.EmptyView>
+            
+            
+            </CollectionView>
     </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

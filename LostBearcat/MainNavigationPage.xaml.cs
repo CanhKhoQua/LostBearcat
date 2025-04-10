@@ -24,12 +24,20 @@ namespace LostBearcat
 
         private async void OnItemInformationClicked(object sender, EventArgs e)
         {
-            // Add navigation logic for item information
+            // TODO: UPDATE INFO HERE TO NAVIGATE TO ITEM DETAILS PAGE, possibly more
+            // 
+            // await Navigation.PushAsync(__________);
+            // 
+            //
         }
 
         private async void OnFilterItemsClicked(object sender, EventArgs e)
         {
-            // Add navigation logic for filtering items
+            // TODO: UPDATE INFO HERE TO NAVIGATE TO ITEM FILTERING PAGE, possibly more
+            // 
+            // await Navigation.PushAsync(__________);
+            // 
+            //
         }
     }
 }
