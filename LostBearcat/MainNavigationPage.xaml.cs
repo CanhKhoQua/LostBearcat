@@ -6,19 +6,22 @@ namespace LostBearcat
 {
     public partial class MainNavigationPage : ContentPage
     {
-        public MainNavigationPage()
+        private readonly LocalDBService _dbService;
+
+        public MainNavigationPage(LocalDBService dbService)
         {
+            _dbService = dbService ?? throw new ArgumentNullException(nameof(dbService));
             InitializeComponent(); // Make sure this matches your XAML
         }
 
         private async void OnAddNewItemClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AddItemPage());
+            await Navigation.PushAsync(new AddItemPage(_dbService));
         }
 
         private async void OnViewLostItemsClicked(object sender, EventArgs e)
         {
-            var lostItemList = new ViewLostPage();
+            var lostItemList = new ViewLostPage(_dbService);
             await Navigation.PushAsync(lostItemList);
         }
 

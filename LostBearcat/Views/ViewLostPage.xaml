@@ -22,7 +22,6 @@
                         <SearchBar x:Name="searchBar"
                                    Placeholder="Search items" 
                                    TextChanged="OnSearchTextChanged"
-                                   
                                    CancelButtonColor="Gray"
                                    PlaceholderColor="Gray"
                                    Margin="0,0,0,10"/>
