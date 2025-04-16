@@ -16,8 +16,9 @@
                     <Label Text="View Lost Items" FontSize="24" 
                     HorizontalOptions="Center" 
                     FontAttributes="Bold" Padding="20"/>
+                    
                     <!-- Preliminary Search Bar attempt 
-                    SearchButtonPressed="OnSearchButtonPressed"
+                    SearchButtonPressed="OnSearchButtonPressed"      NOT NECESSARY Jaecar
                     -->
                         <SearchBar x:Name="searchBar"
                                    Placeholder="Search items" 
