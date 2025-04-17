@@ -36,11 +36,8 @@ namespace LostBearcat
 
         private async void OnFilterItemsClicked(object sender, EventArgs e)
         {
-            // TODO: UPDATE INFO HERE TO NAVIGATE TO ITEM FILTERING PAGE, possibly more
-            // 
-            // await Navigation.PushAsync(__________);
-            // 
-            //
+            var filterItemsPage = new FilterItemsPage(_dbService);
+            await Navigation.PushAsync(filterItemsPage);
         }
     }
 }

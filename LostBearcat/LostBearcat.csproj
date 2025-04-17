@@ -88,6 +88,9 @@
 	  <Compile Update="Views\ViewLostPage.xaml.cs">
 	    <DependentUpon>ViewLostPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\FilterItemsPage.xaml.cs">
+		<DependentUpon>FilterItemsPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -99,6 +102,9 @@
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ViewLostPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\FilterItemsPage.xaml">
+		<Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
 
