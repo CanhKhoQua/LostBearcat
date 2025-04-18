@@ -1,6 +1,7 @@
 ﻿using Microsoft.Maui;
 using Microsoft.Maui.Hosting;
 using Microsoft.Maui.Controls.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace LostBearcat
 {
@@ -16,6 +17,9 @@ namespace LostBearcat
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+            builder.Services.AddSingleton<LocalDBService>();
+
+            builder.Logging.AddDebug();
 
             return builder.Build();
         }

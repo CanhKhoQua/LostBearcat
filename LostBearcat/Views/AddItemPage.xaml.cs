@@ -6,9 +6,13 @@ namespace LostBearcat
 {
     public partial class AddItemPage : ContentPage
     {
-        public AddItemPage()
+        private readonly LocalDBService _dbService;
+        private int _editItemId;
+        private string imagePath;
+        public AddItemPage(LocalDBService dbService)
         {
             InitializeComponent();
+            _dbService = dbService;
         }
 
         private async void OnAddImageClicked(object sender, EventArgs e)
@@ -22,9 +26,11 @@ namespace LostBearcat
 
                 if (result != null)
                 {
+                    imagePath = result.FullPath;
                     var stream = await result.OpenReadAsync();
                     SelectedImage.Source = ImageSource.FromStream(() => stream);
                 }
+                
             }
             catch (Exception ex)
             {
@@ -48,6 +54,30 @@ namespace LostBearcat
             }
 
             // Save item logic would go here
+            if (_editItemId == 0)
+            {
+                await _dbService.Create(new Models.LostItem
+                {
+                    ItemName = ItemNameEntry.Text,
+                    Description = DescriptionEntry.Text,
+                    LocationFound = LocationFoundEntry.Text,
+                    Category = CategoryPicker.SelectedItem.ToString(),
+                    ImagePath = imagePath,
+                    DateAdded = DateTime.Now
+                });
+            }
+            else
+            {
+                await _dbService.Update(new Models.LostItem
+                {
+                    ItemId = _editItemId,
+                    Description = DescriptionEntry.Text,
+                    LocationFound = LocationFoundEntry.Text,
+                    Category = CategoryPicker.SelectedItem.ToString(),
+                    ImagePath = imagePath,
+                    DateAdded = DateTime.Now
+                });
+            }
             // For now, just show a success message
             await DisplayAlert("Success",
                 $"Item '{ItemNameEntry.Text}' added successfully!",

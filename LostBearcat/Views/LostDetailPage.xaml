@@ -11,6 +11,7 @@
             <Label Text="{Binding LocationFound}" FontSize="18"/>
             <Label Text="{Binding Category}" FontSize="18"/>
             <Label Text="{Binding DateAdded}" FontSize="18"/>
+            <Button Text="Delete" Clicked="OnDeleteClicked" BackgroundColor="Red" TextColor="White" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

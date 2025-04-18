@@ -4,12 +4,16 @@ namespace LostBearcat
 {
     public partial class App : Application
     {
-        public App()
+        private readonly LocalDBService _dbService;
+
+        public App(LocalDBService dbService)
         {
+            _dbService = dbService;
+
             InitializeComponent();
 
-            // Set the main page directly
-            MainPage = new NavigationPage(new MainNavigationPage());
+            // Set the main page using the provided dbService
+            MainPage = new NavigationPage(new MainNavigationPage(_dbService));
         }
     }
 }
