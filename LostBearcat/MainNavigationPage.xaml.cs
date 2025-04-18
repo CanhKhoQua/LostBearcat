@@ -6,14 +6,8 @@ namespace LostBearcat
 {
     public partial class MainNavigationPage : ContentPage
     {
-
-        public bool validLogIn;
-
-
-
-        public MainNavigationPage()
-=======
         private readonly LocalDBService _dbService;
+        public bool validLogIn;
 
         public MainNavigationPage(LocalDBService dbService)
         {
@@ -23,56 +17,40 @@ namespace LostBearcat
 
         private async void OnAddNewItemClicked(object sender, EventArgs e)
         {
-
             if (validLogIn)
             {
-                await Navigation.PushAsync(new AddItemPage());
+                await Navigation.PushAsync(new AddItemPage(_dbService));
             }
-            await Navigation.PushAsync(new AddItemPage(_dbService));
-
+            else
+            {
+                await DisplayAlert("Login Required", "Please log in to add an item.", "OK");
+            }
         }
 
         private async void OnViewLostItemsClicked(object sender, EventArgs e)
         {
             if (validLogIn)
             {
-                var lostItemList = new ViewLostPage();
-                await Navigation.PushAsync(lostItemList);
-            }
-            var lostItemList = new ViewLostPage(_dbService);
-            await Navigation.PushAsync(lostItemList);
-        }
-
-
-        private async void OnFilterItemsClicked(object sender, EventArgs e)
-        {
-            var filterItemsPage = new FilterItemsPage(_dbService);
-            await Navigation.PushAsync(filterItemsPage);
-        }
-
-
-        // LOGIN Methods
-
-        private void logInAttempt(object sender, TextChangedEventArgs e)
-        {
-            // Get the text entered in the Entry field
-            var input = logIn.Text;
-
-            // Check if the input is 8 characters long and starts with 'M'
-            if (input.Length == 8 && input.StartsWith("M"))
-            {
-                // Input is valid
-                validLogIn = true;
+                await Navigation.PushAsync(new ViewLostPage(_dbService));
             }
             else
             {
-                // Input is invalid
-                validLogIn = false;
+                await DisplayAlert("Login Required", "Please log in to view lost items.", "OK");
             }
         }
 
+        private async void OnFilterItemsClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new FilterItemsPage(_dbService));
+        }
 
+        // LOGIN Methods
+        private void logInAttempt(object sender, TextChangedEventArgs e)
+        {
+            var input = logIn.Text;
+
+            // Check if the input is 8 characters long and starts with 'M'
+            validLogIn = input.Length == 9 && input.StartsWith("M");
+        }
     }
-
-
 }
