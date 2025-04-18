@@ -20,6 +20,18 @@
             
             <!-- Navigation Buttons -->
             <VerticalStackLayout Spacing="15">
+
+
+                <Entry x:Name="logIn"
+                        Placeholder="M-Number" 
+                        HorizontalTextAlignment="Center"
+                        TextChanged="logInAttempt"
+                        PlaceholderColor="Gray"
+                        Margin="0,0,0,10"/>
+                
+                
+             
+                
                 <Button x:Name="AddNewItemButton"
                         Text="Add New Item"
                         Clicked="OnAddNewItemClicked"
@@ -38,16 +50,10 @@
                         FontSize="18"
                         HeightRequest="60"/>
 
-                <Button x:Name="ItemInformationButton"
-                        Text="Item Information"
-                        Clicked="OnItemInformationClicked"
-                        BackgroundColor="{StaticResource Primary}"
-                        TextColor="{StaticResource White}"
-                        CornerRadius="10"
-                        FontSize="18"
-                        HeightRequest="60"/>
+ 
 
-              
+
+
                 <Button x:Name="FilterItemsButton"
                         Text="Filter Items"
                         Clicked="OnFilterItemsClicked"
