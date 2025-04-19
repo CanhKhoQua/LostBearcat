@@ -1,5 +1,7 @@
 ﻿using Microsoft.Maui.Controls;
 using LostBearcat.Models.ViewModels;
+using LostBearcat.Models;
+using LostBearcat.Views;
 
 namespace LostBearcat
 {
@@ -15,6 +17,18 @@ namespace LostBearcat
             _dbService = dbService;
             _viewModel = (FilterItemsViewModel)BindingContext;
         }
+
+        private async void OnItemSelected(object sender, SelectionChangedEventArgs e)
+        {
+            var lostItem = e.CurrentSelection.FirstOrDefault() as LostItem;
+            if (lostItem != null)
+            {
+                var lostDetail = new LostDetailPage(lostItem, _dbService);
+                await Navigation.PushAsync(lostDetail);
+                ((CollectionView)sender).SelectedItem = null;
+            }
+        }
+
 
         // Filter command already handled by the ViewModel via RelayCommand
         private async void OnFilterClicked(object sender, EventArgs e)

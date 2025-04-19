@@ -15,6 +15,9 @@ namespace LostBearcat.Models.ViewModels
         private ObservableCollection<LostItem> filteredItems = new();
 
         [ObservableProperty]
+        private LostItem item = new();
+
+        [ObservableProperty]
         private string selectedCategory = "All Categories";
 
         [ObservableProperty]

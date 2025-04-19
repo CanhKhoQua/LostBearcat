@@ -1,108 +1,105 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:LostBearcat.Models.ViewModels"
-             x:Class="LostBearcat.FilterItemsPage"
-             Title="Filter Items">
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"  
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"  
+            xmlns:local="clr-namespace:LostBearcat.Models.ViewModels"  
+            x:Class="LostBearcat.FilterItemsPage"  
+            Title="Filter Items">  
 
-    <ContentPage.BindingContext>
-        <local:FilterItemsViewModel />
-    </ContentPage.BindingContext>
+   <ContentPage.BindingContext>  
+       <local:FilterItemsViewModel />  
+   </ContentPage.BindingContext>  
 
-    <ScrollView>
-        <VerticalStackLayout Spacing="25" Padding="30">
-            <Label Text="FILTER ITEMS"
-                   FontSize="24"
-                   HorizontalOptions="Center"
-                   FontAttributes="Bold" />
+   <ScrollView>  
+       <VerticalStackLayout Spacing="25" Padding="30">  
+           <Label Text="FILTER ITEMS"  
+                  FontSize="24"  
+                  HorizontalOptions="Center"  
+                  FontAttributes="Bold" />  
 
-            <!-- Category Filter -->
-            <Picker x:Name="CategoryPicker"
-                    SelectedItem="{Binding SelectedCategory}"
-                    Title="Select Category">
-                <Picker.Items>
-                    <x:String>All Categories</x:String>
-                    <x:String>Electronics</x:String>
-                    <x:String>Clothing</x:String>
-                    <x:String>Books</x:String>
-                    <x:String>Accessories</x:String>
-                    <x:String>Other</x:String>
-                </Picker.Items>
-            </Picker>
+           <!-- Category Filter -->  
+           <Picker x:Name="CategoryPicker"  
+                   SelectedItem="{Binding SelectedCategory}"  
+                   Title="Select Category">  
+               <Picker.Items>  
+                   <x:String>All Categories</x:String>  
+                   <x:String>Electronics</x:String>  
+                   <x:String>Clothing</x:String>  
+                   <x:String>Books</x:String>  
+                   <x:String>Accessories</x:String>  
+                   <x:String>Other</x:String>  
+               </Picker.Items>  
+           </Picker>  
 
-            <!-- Location Filter -->
-            <Picker x:Name="LocationPicker"
-                    SelectedItem="{Binding SelectedLocation}"
-                    Title="Select Location">
-                <Picker.Items>
-                    <x:String>All Locations</x:String>
-                    <x:String>Lindner</x:String>
-                    <x:String>TUC</x:String>
-                    <x:String>Langsam</x:String>
-                    <x:String>Baldwin Hall</x:String>
-                    <x:String>CCM</x:String>
-                    <x:String>Old Chemistry</x:String>
-                    <x:String>Other</x:String>
-                </Picker.Items>
-            </Picker>
+           <!-- Location Filter -->  
+           <Picker x:Name="LocationPicker"  
+                   SelectedItem="{Binding SelectedLocation}"  
+                   Title="Select Location">  
+               <Picker.Items>  
+                   <x:String>All Locations</x:String>  
+                   <x:String>Lindner</x:String>  
+                   <x:String>TUC</x:String>  
+                   <x:String>Langsam</x:String>  
+                   <x:String>Baldwin Hall</x:String>  
+                   <x:String>CCM</x:String>  
+                   <x:String>Old Chemistry</x:String>  
+                   <x:String>Other</x:String>  
+               </Picker.Items>  
+           </Picker>  
 
-            <!-- Time Period Filter -->
-            <Picker x:Name="TimePeriodPicker"
-                    SelectedItem="{Binding SelectedTimePeriod}"
-                    Title="Select Time Period">
-                <Picker.Items>
-                    <x:String>All Time</x:String>
-                    <x:String>Less than 7 days</x:String>
-                    <x:String>7-14 days</x:String>
-                    <x:String>15-30 days</x:String>
-                    <x:String>More than a month</x:String>
-                </Picker.Items>
-            </Picker>
+           <!-- Time Period Filter -->  
+           <Picker x:Name="TimePeriodPicker"  
+                   SelectedItem="{Binding SelectedTimePeriod}"  
+                   Title="Select Time Period">  
+               <Picker.Items>  
+                   <x:String>All Time</x:String>  
+                   <x:String>Less than 7 days</x:String>  
+                   <x:String>7-14 days</x:String>  
+                   <x:String>15-30 days</x:String>  
+                   <x:String>More than a month</x:String>  
+               </Picker.Items>  
+           </Picker>  
 
-            <!-- Filter and Reset Buttons -->
-            <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
-                <Button Text="FILTER"
-        BackgroundColor="Green"
-        TextColor="White"
-        Clicked="OnFilterClicked" />
+           <!-- Filter and Reset Buttons -->  
+           <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">  
+               <Button Text="FILTER"  
+                       BackgroundColor="Green"  
+                       TextColor="White"  
+                       Clicked="OnFilterClicked" />  
 
+               <Button Text="RESET"  
+                       BackgroundColor="Red"  
+                       TextColor="White"  
+                       Command="{Binding ResetFiltersCommand}" />  
 
-                <Button Text="RESET"
-                        BackgroundColor="Red"
-                        TextColor="White"
-                        Command="{Binding ResetFiltersCommand}" />
+           </HorizontalStackLayout>  
 
-            </HorizontalStackLayout>
+           <!-- Filtered Items View -->  
+           <CollectionView x:Name="cvItems" SelectionMode="Single" ItemsSource="{Binding FilteredItems}" SelectionChanged="OnItemSelected">  
+               <CollectionView.ItemTemplate>  
+                   <DataTemplate>  
+                       <Frame BorderColor="Gray" Margin="5" Padding="10">  
+                           <HorizontalStackLayout Spacing="10">  
+                               <!-- Image on the left -->  
+                               <Image Source="{Binding ImagePath}"  
+                                      HeightRequest="80"  
+                                      WidthRequest="100"  
+                                      Aspect="AspectFill"  
+                                      VerticalOptions="Start"  
+                                      Margin="0,5,30,0" />  
 
-            <!-- Filtered Items View -->
-            <CollectionView ItemsSource="{Binding FilteredItems}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Frame BorderColor="Gray" Margin="5" Padding="10">
-                            <HorizontalStackLayout Spacing="10">
-                                <!-- Image on the left -->
-                                <Image Source="{Binding ImagePath}"
-                           HeightRequest="80"
-                           WidthRequest="100"
-                           Aspect="AspectFill"
-                           VerticalOptions="Start"
-                           Margin="0,5,30,0"
-                           />
+                               <!-- Item details on the right -->  
+                               <VerticalStackLayout>  
+                                   <Label Text="{Binding ItemName}" FontAttributes="Bold" FontSize="16" />  
+                                   <Label Text="{Binding Description}" FontSize="14" LineBreakMode="TailTruncation" />  
+                                   <Label Text="{Binding LocationFound}" FontSize="12" />  
+                                   <Label Text="{Binding Category}" FontSize="12" TextColor="Gray" />  
+                               </VerticalStackLayout>  
+                           </HorizontalStackLayout>  
+                       </Frame>  
+                   </DataTemplate>  
+               </CollectionView.ItemTemplate>  
+           </CollectionView>  
 
-                                <!-- Item details on the right -->
-                                <VerticalStackLayout>
-                                    <Label Text="{Binding ItemName}" FontAttributes="Bold" FontSize="16" />
-                                    <Label Text="{Binding Description}" FontSize="14" LineBreakMode="TailTruncation" />
-                                    <Label Text="{Binding LocationFound}" FontSize="12" />
-                                    <Label Text="{Binding Category}" FontSize="12" TextColor="Gray" />
-                                </VerticalStackLayout>
-                            </HorizontalStackLayout>
-                        </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-
-
-        </VerticalStackLayout>
-    </ScrollView>
+       </VerticalStackLayout>  
+   </ScrollView>  
 </ContentPage>
