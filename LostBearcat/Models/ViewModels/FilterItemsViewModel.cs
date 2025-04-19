@@ -36,6 +36,12 @@ namespace LostBearcat.Models.ViewModels
             "Old Chemistry"
         };
 
+        public FilterItemsViewModel()
+        {
+            // Initialize with an empty collection
+            FilteredItems = new ObservableCollection<LostItem>();
+        }
+
         // Command to filter items
         [RelayCommand]
         public async Task FilterItemsAsync(LocalDBService dbService)
@@ -68,6 +74,7 @@ namespace LostBearcat.Models.ViewModels
                         item.LocationFound == SelectedLocation);
                 }
             }
+
 
             // Apply Time Period filter
             if (!string.IsNullOrEmpty(SelectedTimePeriod) && SelectedTimePeriod != "All Time")
@@ -106,6 +113,7 @@ namespace LostBearcat.Models.ViewModels
 
             FilteredItems.Clear();
         }
+
     }
 }
 

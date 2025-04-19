@@ -2,6 +2,7 @@
 using LostBearcat.Models.ViewModels;
 using LostBearcat.Models;
 using LostBearcat.Views;
+using System.Collections.ObjectModel;
 
 namespace LostBearcat
 {
@@ -28,7 +29,19 @@ namespace LostBearcat
                 ((CollectionView)sender).SelectedItem = null;
             }
         }
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
 
+            // Refresh the filtered items
+            var filteredItems = await _dbService.GetFilteredLostItems(
+                _viewModel.SelectedCategory,
+                _viewModel.SelectedLocation,
+                _viewModel.SelectedTimePeriod
+            );
+
+            _viewModel.FilteredItems = new ObservableCollection<LostItem>(filteredItems);
+        }
 
         // Filter command already handled by the ViewModel via RelayCommand
         private async void OnFilterClicked(object sender, EventArgs e)

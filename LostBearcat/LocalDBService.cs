@@ -16,6 +16,55 @@ namespace LostBearcat
         {
             _connection = new SQLiteAsyncConnection(Path.Combine(FileSystem.AppDataDirectory, DB_Name));
             _connection.CreateTableAsync<LostItem>();
+
+#if DEBUG
+            Task.Run(async () => await DeleteAll<LostItem>());
+            // Insert sample data in debug mode
+            Task.Run(async () => await InsertSampleDataAsync());
+#endif
+        }
+
+        private List<LostItem> GetSampleData()
+        {
+            return new List<LostItem>
+        {
+            new LostItem
+            {
+                ItemName = "Wallet",
+                Description = "Leather wallet",
+                LocationFound = "Library",
+                Category = "Accessories",
+                ImagePath = "wallet.png",
+                DateAdded = DateTime.Now.AddDays(-2)
+            },
+            new LostItem
+            {
+                ItemName = "Keys",
+                Description = "Set of house keys",
+                LocationFound = "TUC",
+                Category = "Other",
+                ImagePath = "keys.png",
+                DateAdded = DateTime.Now.AddDays(-5)
+            },
+            new LostItem
+            {
+                ItemName = "Phone",
+                Description = "iPhone 16",
+                LocationFound = "Langsam",
+                Category = "Electronics",
+                ImagePath = "phone.png",
+                DateAdded = DateTime.Now.AddDays(-1)
+            }
+        };
+        }
+
+        private async Task InsertSampleDataAsync()
+        {
+            var sampleData = GetSampleData();
+            foreach (var item in sampleData)
+            {
+                await Create(item);
+            }
         }
 
         //Get list of lost items
@@ -47,6 +96,13 @@ namespace LostBearcat
         {
             await _connection.DeleteAsync(item);
         }
+
+        //Delete all
+        public async Task DeleteAll<T>()
+        {
+            await _connection.DeleteAllAsync<T>();
+        }
+
 
         // Get filtered lost items based on category, location, and time period
         public async Task<List<LostItem>> GetFilteredLostItems(string category, string location, string timePeriod)
