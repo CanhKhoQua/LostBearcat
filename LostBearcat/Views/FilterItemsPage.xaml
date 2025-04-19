@@ -42,6 +42,7 @@
                     <x:String>Baldwin Hall</x:String>
                     <x:String>CCM</x:String>
                     <x:String>Old Chemistry</x:String>
+                    <x:String>Other</x:String>
                 </Picker.Items>
             </Picker>
 
