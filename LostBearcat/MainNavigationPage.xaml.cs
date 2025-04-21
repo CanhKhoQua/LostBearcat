@@ -41,7 +41,17 @@ namespace LostBearcat
 
         private async void OnFilterItemsClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new FilterItemsPage(_dbService));
+
+            if (validLogIn)
+            {
+                await Navigation.PushAsync(new FilterItemsPage(_dbService));
+            }
+            else
+            {
+                await DisplayAlert("Login Required", "Please log in to filter lost items.", "OK");
+            }
+
+            
         }
 
         // LOGIN Methods
