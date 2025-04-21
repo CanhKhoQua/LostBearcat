@@ -15,6 +15,9 @@ namespace LostBearcat.Models.ViewModels
         private ObservableCollection<LostItem> filteredItems = new();
 
         [ObservableProperty]
+        private LostItem item = new();
+
+        [ObservableProperty]
         private string selectedCategory = "All Categories";
 
         [ObservableProperty]
@@ -22,6 +25,22 @@ namespace LostBearcat.Models.ViewModels
 
         [ObservableProperty]
         private string selectedTimePeriod = "All Time";
+
+        List<string> knownLocations = new List<string>
+        {
+            "Lindner",
+            "TUC",
+            "Langsam",
+            "Baldwin Hall",
+            "CCM",
+            "Old Chemistry"
+        };
+
+        public FilterItemsViewModel()
+        {
+            // Initialize with an empty collection
+            FilteredItems = new ObservableCollection<LostItem>();
+        }
 
         // Command to filter items
         [RelayCommand]
@@ -40,8 +59,22 @@ namespace LostBearcat.Models.ViewModels
             // Apply Location filter
             if (!string.IsNullOrEmpty(SelectedLocation) && SelectedLocation != "All Locations")
             {
-                filtered = filtered.Where(item => item.LocationFound == SelectedLocation);
+                if (SelectedLocation == "Other")
+                {
+                    // Show items whose LocationFound is NOT in the known list and not null
+                    filtered = filtered.Where(item =>
+                        item.LocationFound != null &&
+                        !knownLocations.Contains(item.LocationFound));
+                }
+                else
+                {
+                    // Show only items that match the selected location
+                    filtered = filtered.Where(item =>
+                        item.LocationFound != null &&
+                        item.LocationFound == SelectedLocation);
+                }
             }
+
 
             // Apply Time Period filter
             if (!string.IsNullOrEmpty(SelectedTimePeriod) && SelectedTimePeriod != "All Time")
@@ -80,6 +113,7 @@ namespace LostBearcat.Models.ViewModels
 
             FilteredItems.Clear();
         }
+
     }
 }
 
