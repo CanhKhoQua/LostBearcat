@@ -59,7 +59,7 @@ namespace LostBearcat
         {
             var input = logIn.Text;
 
-            // Check if the input is 8 characters long and starts with 'M'
+            // Check if the input is 9 characters long and starts with 'M'
             validLogIn = input.Length == 9 && input.StartsWith("M");
         }
     }

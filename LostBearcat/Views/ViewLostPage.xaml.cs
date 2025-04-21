@@ -39,21 +39,25 @@ public partial class ViewLostPage : ContentPage
             ((CollectionView)sender).SelectedItem = null;
         }
     }
-    protected override async void OnAppearing()
-    {
-        base.OnAppearing();
+    //protected override async void OnAppearing()
+    //{
+    //    base.OnAppearing();
 
-        var lostItems = await _dBService.GetLostItems();
-        // Make sure the search bar is properly connected after the page is loaded
-        if (searchBar != null)
-        {
-            searchBar.TextChanged -= OnSearchTextChanged; // Remove any existing handlers
-            searchBar.TextChanged += OnSearchTextChanged; // Add the handler
-        }
-    }
+    //    var lostItems = await _dBService.GetLostItems();
+    //    // Make sure the
+    //    //
+    //    //
+    //    //
+    //    // h bar is properly connected after the page is loaded
+    //    if (searchBar != null)
+    //    {
+    //        searchBar.TextChanged -= OnSearchTextChanged; // Remove any existing handlers
+    //        searchBar.TextChanged += OnSearchTextChanged; // Add the handler
+    //    }
+    //}
 
-    public void OnSearchTextChanged(object sender, TextChangedEventArgs e)
-    {
+    //public void OnSearchTextChanged(object sender, TextChangedEventArgs e)
+    //{
         /*
      // Add debug to verify this is being called
      System.Diagnostics.Debug.WriteLine($"Search text changed: {e.NewTextValue}");
@@ -86,5 +90,5 @@ public partial class ViewLostPage : ContentPage
          }
      }
  }*/
-    }
+    //}
 }

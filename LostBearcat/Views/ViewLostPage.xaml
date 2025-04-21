@@ -22,12 +22,12 @@
                     <!-- Preliminary Search Bar attempt 
                     SearchButtonPressed="OnSearchButtonPressed"      NOT NECESSARY Jaecar
                     -->
-                        <SearchBar x:Name="searchBar"
+                        <!--<SearchBar x:Name="searchBar"
                                    Placeholder="Search items" 
                                    TextChanged="OnSearchTextChanged"
                                    CancelButtonColor="Gray"
                                    PlaceholderColor="Gray"
-                                   Margin="0,0,0,10"/>
+                                   Margin="0,0,0,10"/>-->
 
 
                     </StackLayout>

@@ -42,7 +42,7 @@
 
             <Button x:Name="AddImageButton"
                     Text="Add Image"
-                    BackgroundColor="{StaticResource Secondary}"
+                    BackgroundColor="White"
                     TextColor="{StaticResource Black}"
                     Clicked="OnAddImageClicked"/>
 
